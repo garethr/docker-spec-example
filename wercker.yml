@@ -1,7 +1,12 @@
 box: wercker-labs/docker
 build:
   steps:
-    #- bundle-install
+    - install-packages:
+        packages: ruby1.9.1
+    - script:
+        name: install bundler
+        code: gem install bundler
+    - bundle-install
     - script:
         name: print the docker version
         code: docker version | tee $WERCKER_REPORT_MESSAGE_FILE
@@ -10,10 +15,10 @@ build:
         code: docker build -t garethr/nginx .
     - script:
         name: run a docker container based on the image
-        code: docker run garethr/nginx -name test
+        code: docker run garethr/nginx --name test
     - script:
         name: find port to test
         code: docker port test 80
-    #- script:
-    #    name: run the test suite
-    #    code: bundle exec rspec
+    - script:
+        name: run the test suite
+        code: bundle exec rspec
