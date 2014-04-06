@@ -18,7 +18,7 @@ build:
         code: docker build -t garethr/nginx .
     - script:
         name: run a docker container based on the image
-        code: docker run --name test -d garethr/nginx
+        code: docker run -p 80 --name test -d garethr/nginx
     - script:
         name: run the test suite
         code: |
