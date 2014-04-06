@@ -18,10 +18,9 @@ build:
         code: docker build -t garethr/nginx .
     - script:
         name: run a docker container based on the image
-        code: docker run --name test garethr/nginx
-    - script:
-        name: find port to test
-        code: docker port test 80
+        code: docker run --name test -d garethr/nginx
     - script:
         name: run the test suite
-        code: bundle exec rspec
+        code: |
+          export PORT=$(docker port test 80)
+          bundle exec rspec
