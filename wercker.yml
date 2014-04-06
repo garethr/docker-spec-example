@@ -4,8 +4,11 @@ build:
     - install-packages:
         packages: ruby1.9.1
     - script:
+        name: print the ruby version
+        code: ruby --version | tee $WERCKER_REPORT_MESSAGE_FILE
+    - script:
         name: install bundler
-        code: gem install bundler
+        code: sudo gem install bundler
     - bundle-install
     - script:
         name: print the docker version
