@@ -1,0 +1,13 @@
+box: wercker-labs/docker
+build:
+  steps:
+    - bundle-install
+    - script:
+        name: create the docker image
+        code: docker build -t garethr/nginx
+    - script:
+        name: run a docker container based on the image
+        code: docker run garethr/nginx
+    - script:
+        name: run the test suite
+        code: bundle exec rspec
