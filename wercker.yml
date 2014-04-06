@@ -26,7 +26,7 @@ build:
           bundle exec rspec
 deploy:
   steps:
-    - create_file:
+    - create-file:
         name: docker index config
         filename: /home/ubuntu/.dockercfg
         content: $DOCKER_INDEX_CONFIG
