@@ -3,8 +3,11 @@ build:
   steps:
     #- bundle-install
     - script:
+        name: print the docker version
+        code: docker version | tee $WERCKER_REPORT_MESSAGE_FILE
+    - script:
         name: create the docker image
-        code: docker build -t garethr/nginx
+        code: docker build -t garethr/nginx .
     - script:
         name: run a docker container based on the image
         code: docker run garethr/nginx -name test
