@@ -24,3 +24,13 @@ build:
         code: |
           export PORT=$(docker port test 80)
           bundle exec rspec
+deploy:
+  steps:
+    - create_file:
+        name: docker index config
+        content: $DOCKER_INDEX_CONFIG
+        overwrite: true
+        hide-from-log: true
+    - script:
+        name: Push to the Docker index
+        code: docker push garethr/nginx
