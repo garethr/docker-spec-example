@@ -28,6 +28,7 @@ deploy:
   steps:
     - create_file:
         name: docker index config
+        filename: /home/ubuntu/.dockercfg
         content: $DOCKER_INDEX_CONFIG
         overwrite: true
         hide-from-log: true
