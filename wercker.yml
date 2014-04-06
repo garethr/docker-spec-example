@@ -2,7 +2,7 @@ box: wercker-labs/docker
 build:
   steps:
     - install-packages:
-        packages: ruby1.9.1
+        packages: ruby1.9.1-dev
     - script:
         name: print the ruby version
         code: ruby --version | tee $WERCKER_REPORT_MESSAGE_FILE
