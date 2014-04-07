@@ -20,11 +20,11 @@ build:
         overwrite: true
         hide-from-log: true
     - script:
-        name: Login to Docker index
+        name: login to Docker index
         code: docker login -u $DOCKER_USERNAME
     - script:
         name: pull latest images from repository
-        code: docker build pull garethr/nginx
+        code: docker pull garethr/nginx
     - script:
         name: create the docker image
         code: docker build -t garethr/nginx .
