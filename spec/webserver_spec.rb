@@ -1,8 +1,16 @@
 require "httparty"
 
 describe "The web server" do
-  it "should be listening on the open port" do
+  before(:all) do
     port = ENV["PORT"] or 'localhost:80'
-    HTTParty.get("http://#{port}").code.should == 200
+    @response = HTTParty.get("http://#{port}")
+  end
+
+  it "should be listening on the open port" do
+    @response.code.should == 200
+  end
+
+  it "should return the welcome page" do
+    @response.body.to_s.should match "Welcome to nginx!"
   end
 end
