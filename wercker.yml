@@ -34,7 +34,7 @@ deploy:
         hide-from-log: true
     - script:
         name: Login to Docker index
-        code: docker login
+        code: docker login -u $DOCKER_USERNAME
     - script:
         name: Push to the Docker index
         code: docker push garethr/nginx
