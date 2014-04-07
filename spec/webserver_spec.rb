@@ -11,6 +11,6 @@ describe "The web server" do
   end
 
   it "should return the welcome page" do
-    @response.body.to_s.should match "Welcome to nginx!"
+    @response.body.to_s.should match "Hello Wercker"
   end
 end
