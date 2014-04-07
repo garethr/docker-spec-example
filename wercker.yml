@@ -24,8 +24,6 @@ build:
         code: |
           export PORT=$(docker port test 80)
           bundle exec rspec
-deploy:
-  steps:
     - create-file:
         name: docker index config
         filename: /home/ubuntu/.dockercfg
