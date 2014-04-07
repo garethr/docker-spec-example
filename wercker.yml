@@ -13,6 +13,18 @@ build:
     - script:
         name: print the docker version
         code: docker version | tee $WERCKER_REPORT_MESSAGE_FILE
+    - create-file:
+        name: docker index config
+        filename: /home/ubuntu/.dockercfg
+        content: $DOCKER_INDEX_CONFIG
+        overwrite: true
+        hide-from-log: true
+    - script:
+        name: Login to Docker index
+        code: docker login -u $DOCKER_USERNAME
+    - script:
+        name: pull latest images from repository
+        code: docker build pull garethr/nginx
     - script:
         name: create the docker image
         code: docker build -t garethr/nginx .
@@ -24,15 +36,6 @@ build:
         code: |
           export PORT=$(docker port test 80)
           bundle exec rspec
-    - create-file:
-        name: docker index config
-        filename: /home/ubuntu/.dockercfg
-        content: $DOCKER_INDEX_CONFIG
-        overwrite: true
-        hide-from-log: true
     - script:
-        name: Login to Docker index
-        code: docker login -u $DOCKER_USERNAME
-    - script:
-        name: Push to the Docker index
+        name: push to the Docker index
         code: docker push garethr/nginx
